@@ -30,6 +30,10 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 
+app.get("/health", (_req, res) => {
+  res.status(200).json({ status: "ok", message: "Public health endpoint" });
+});
+
 app.get("/api/health", (_req, res) => {
   res.json({ ok: true, message: "Server is running" });
 });
