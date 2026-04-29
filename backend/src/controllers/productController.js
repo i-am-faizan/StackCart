@@ -2,7 +2,7 @@ import slugify from "slugify";
 import Product from "../models/Product.js";
 
 const buildImages = (files = [], existingImages = []) => {
-  const newImages = files.map((file) => `/uploads/${file.filename}`);
+  const newImages = files.map((file) => file.path);
   return [...existingImages, ...newImages];
 };
 

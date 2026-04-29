@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  const image = product.images?.[0]
-    ? `${import.meta.env.VITE_API_HOST || "http://localhost:5000"}${product.images[0]}`
-    : "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop";
+  const getImageUrl = (url) => {
+    if (!url) return "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop";
+    if (url.startsWith("http")) return url;
+    return `${import.meta.env.VITE_API_HOST || "http://localhost:5000"}${url}`;
+  };
+  const image = getImageUrl(product.images?.[0]);
 
   return (
     <article className="product-card">

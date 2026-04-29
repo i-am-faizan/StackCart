@@ -35,7 +35,9 @@ const ProductDetailPage = () => {
     if (!product?.images?.[0]) {
       return "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=1000&auto=format&fit=crop";
     }
-    return `${import.meta.env.VITE_API_HOST || "http://localhost:5000"}${product.images[0]}`;
+    const url = product.images[0];
+    if (url.startsWith("http")) return url;
+    return `${import.meta.env.VITE_API_HOST || "http://localhost:5000"}${url}`;
   }, [product]);
 
   const handleAddToCart = async () => {

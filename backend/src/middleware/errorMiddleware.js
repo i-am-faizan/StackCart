@@ -3,6 +3,7 @@ export const notFound = (req, res, _next) => {
 };
 
 export const errorHandler = (err, _req, res, _next) => {
+  console.error("Error encountered:", err);
   const statusCode = res.statusCode !== 200 ? res.statusCode : 500;
   res.status(statusCode).json({
     message: err.message || "Server error",
